@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/Tom_Jerry.dir/main.cpp.o CMakeFiles/Tom_Jerry.dir/Room.cpp.o CMakeFiles/Tom_Jerry.dir/Path.cpp.o  -o Tom_Jerry 
