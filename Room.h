@@ -5,6 +5,7 @@
 #ifndef TOM_JERRY_ROOM_H
 #define TOM_JERRY_ROOM_H
 
+#include "Path.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -14,6 +15,7 @@ using namespace std;
 struct Coordinates {
     int x; //from north to south
     int y; //from west to east
+    Coordinates(int _y = 0, int _x = 0): x(_x), y(_y) {}
 };
 
 struct Furniture {
@@ -29,11 +31,14 @@ class Room {
     vector<Furniture> furniture;
     vector<Coordinates> paintSpots;
 
-    void buildRoom(); //function which creates a matrix with the information we need
+    void buildTerrain(); //function which creates a matrix with the information we need
 
 public:
-    void createRoom(string fileName);
-    vector<vector<char> > getTerrain();
+    bool possibleStep(Coordinates possition);
+
+    void readRoom(string fileName);
+    Path findShortestPath();
+    void bfs(vector<vector <int> > &matrixWithPath);
     void print();
 
 };

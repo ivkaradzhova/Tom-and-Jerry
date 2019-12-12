@@ -3,11 +3,12 @@
 
 CMakeFiles/Tom_Jerry.dir/Path.cpp.o: ../Path.cpp
 CMakeFiles/Tom_Jerry.dir/Path.cpp.o: ../Path.h
-CMakeFiles/Tom_Jerry.dir/Path.cpp.o: ../Room.h
 
+CMakeFiles/Tom_Jerry.dir/Room.cpp.o: ../Path.h
 CMakeFiles/Tom_Jerry.dir/Room.cpp.o: ../Room.cpp
 CMakeFiles/Tom_Jerry.dir/Room.cpp.o: ../Room.h
 
+CMakeFiles/Tom_Jerry.dir/main.cpp.o: ../Path.h
 CMakeFiles/Tom_Jerry.dir/main.cpp.o: ../Room.h
 CMakeFiles/Tom_Jerry.dir/main.cpp.o: ../main.cpp
 

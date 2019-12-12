@@ -4,17 +4,19 @@
 
 #ifndef TOM_JERRY_PATH_H
 #define TOM_JERRY_PATH_H
+#include <iostream>
+#include <string>
+using namespace std;
 
-#include "Room.h"
-
-class Path {
-    Room room;
-    int countPaint;
-    int lenght;
-    int countTurns;
-public:
-    int getLenght();
-
+struct Path {
+    int length;
+    int numPaintSpots;
+    string commands;
+    Path (): length (0),numPaintSpots (0), commands("") {}
+    void addStep(char direction) {
+        commands.push_back(direction);
+        length++;
+    }
 };
 
 
