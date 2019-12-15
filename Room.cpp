@@ -46,7 +46,6 @@ void Room::print() {
     }
 }
 
-
 /**
  * Private function used after reading the input from a file (in readRoom).
  * It arranges all of the objects from the input into one terrain.
@@ -94,61 +93,5 @@ bool Room::possibleStep(Coordinates possition) {
     int Y = possition.y;
     return (X >= 0 && Y >= 0 && X < width && Y < length && terrain[Y][X] != '1');
 
-}
-
-void Room::bfs(vector<vector<int> >& matrixWithPaths) {
-    Coordinates startPoint = this->tom;
-    Coordinates endPoint = this->jerry;
-
-    vector<vector<bool> > visited(length);
-    for(int i = 0; i < this->length; i++) {
-        visited[i].resize(this->width, 0);
-    }
-    queue<Coordinates> q;
-    q.push(startPoint);
-
-    matrixWithPaths[startPoint.y][startPoint.x] = 0;
-    visited[startPoint.y][startPoint.x] = true;
-
-    while(!q.empty()) {
-        Coordinates top = q.front();
-        q.pop();
-        int X = top.x;
-        int Y = top.y;
-        if(X == endPoint.x && Y == endPoint.y ) {
-            return;
-        }
-
-        Coordinates currentCoordinate(Y , X + 1);
-        //East
-        if( possibleStep( currentCoordinate ) && visited[Y][X + 1] == 0) {
-            q.push(currentCoordinate);
-            matrixWithPaths[Y][X + 1] = matrixWithPaths[Y][X] + 1;
-            visited[Y][X + 1] = true;
-        }
-        currentCoordinate = Coordinates(Y - 1, X);
-        //South
-        if( possibleStep( currentCoordinate ) && visited[Y - 1][X] == 0) {
-            q.push(currentCoordinate);
-            matrixWithPaths[Y - 1][X] = matrixWithPaths[Y][X] + 1;
-            visited[Y - 1][X] = true;
-        }
-        currentCoordinate = Coordinates(Y , X - 1);
-        //West
-        if( possibleStep( currentCoordinate ) && visited[Y][X - 1] == 0) {
-            q.push(currentCoordinate);
-            matrixWithPaths[Y][X - 1] = matrixWithPaths[Y][X] + 1;
-            visited[Y][X - 1] = true;
-        }
-        currentCoordinate = Coordinates(Y + 1, X);
-        //North
-        if( possibleStep( currentCoordinate ) && visited[Y + 1][X] == 0) {
-            q.push(currentCoordinate);
-            matrixWithPaths[Y + 1][X] = matrixWithPaths[Y][X] + 1;
-            visited[Y + 1][X] = true;
-        }
-
-
-    }
 }
 

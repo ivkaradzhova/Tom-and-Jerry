@@ -5,7 +5,6 @@
 #ifndef TOM_JERRY_ROOM_H
 #define TOM_JERRY_ROOM_H
 
-#include "Path.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -16,6 +15,9 @@ struct Coordinates {
     int x; //from north to south
     int y; //from west to east
     Coordinates(int _y = 0, int _x = 0): x(_x), y(_y) {}
+    bool operator != (Coordinates &other) {
+        return this->y != other.y || this->x != other.x;
+    }
 };
 
 struct Furniture {
@@ -32,16 +34,15 @@ class Room {
     vector<Coordinates> paintSpots;
 
     void buildTerrain(); //function which creates a matrix with the information we need
-
-public:
     bool possibleStep(Coordinates possition);
 
+    friend class ShortestPathTree;
+
+public:
+
     void readRoom(string fileName);
-    Path findShortestPath();
-    void bfs(vector<vector <int> > &matrixWithPath);
     void print();
 
 };
-
 
 #endif //TOM_JERRY_ROOM_H

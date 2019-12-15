@@ -1,29 +1,19 @@
 #include <iostream>
 #include <fstream>
-#include "Room.h"
+#include <vector>
+#include "Tree.h"
 using namespace std;
 int main() {
-      Room ex1;
-      ex1.readRoom("test2.txt");
-      ex1.print();
-      vector<vector<int> > asd;
-      asd.resize(6);
-      for(int i = 0; i < asd.size(); i++)
-      {
-          asd[i].resize(5);
-      }
-      ex1.bfs(asd);
-      cout << endl;
+    ShortestPathTree t("test2.txt");
+  /*  t.addLeaf(Coordinates(0,0));
+    t.addLeaf(Coordinates(0,1));
+    t.addLeaf(Coordinates(0,2));
+    t.addLeaf(Coordinates(1,0));
+    t.addLeaf(Coordinates(1,1));
 
-      //cout << ex1.possibleStep(Coordinates(2, 2)) << endl;
-    for(int i = 0; i < asd.size(); i++)
-    {
-        for(int j = 0; j < asd[i].size(); j++) {
-            cout << asd[i][j] << " ";
-        }
-        cout << endl;
-    }
-    //ex1.print();
+*/
+    t.createTree();
+    t.print();
 
-    return 0;
+   return 0;
 }
