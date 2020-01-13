@@ -1,1 +1,6 @@
-Project for Data Structurs and Programming course.
+Project "Tom&Jerry" for Data Structurs and Programming course.
+
+Има три текстови файла (test1.txt, test2.txt, test3.txt) с пробни разположения на мебелите и животните из стаята.
+
+За момента проекта изпечатва на конзолата всички най-кратки пътища от Джери до Том, заедно с дължината им, количеството разлята боя, нужните команди за дрона и броя завои. 
+

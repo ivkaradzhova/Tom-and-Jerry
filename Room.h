@@ -14,7 +14,7 @@ using namespace std;
 struct Coordinates {
     int x; //from north to south
     int y; //from west to east
-    Coordinates(int _y = 0, int _x = 0): x(_x), y(_y) {}
+    Coordinates(int _x = 0, int _y = 0): x(_x), y(_y) {}
     bool operator != (Coordinates &other) {
         return this->y != other.y || this->x != other.x;
     }
@@ -37,6 +37,7 @@ class Room {
     bool possibleStep(Coordinates possition);
 
     friend class ShortestPathTree;
+    friend class Commands;
 
 public:
 

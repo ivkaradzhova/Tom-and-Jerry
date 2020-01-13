@@ -60,9 +60,9 @@ void Room::buildTerrain() {
     for(int i = 0; i < this->numFurniture; i++) {
         int startX = furniture[i].startPoint.x;
         int startY = furniture[i].startPoint.y;
-        for(int j = startY; j < furniture[i].shape.size() + startY; j++) {
-            for(int k = startX; k < furniture[i].shape[j - startY].size() + startX; k++) {
-                terrain[j][k] = furniture[i].shape[j - startY][k - startX];
+        for(int j = startX; j < furniture[i].shape.size() + startX ; j++) {
+            for(int k = startY; k < furniture[i].shape[j - startX].size() + startY ; k++) {
+                terrain[j][k] = furniture[i].shape[j - startX][k - startY];
             }
         }
     }
@@ -78,20 +78,21 @@ void Room::buildTerrain() {
     for(int i = 0; i < numPaintSpots; i++) {
         int X = paintSpots[i].x;
         int Y = paintSpots[i].y;
-        terrain[Y][X] = 'P';
+        if(terrain[X][Y] != '1')
+            terrain[X][Y] = 'P';
     }
 
     //putting the cat
-    terrain[tom.y][tom.x] = 'T';
+    terrain[tom.x][tom.y] = 'T';
 
     //putting the mouse
-    terrain[jerry.y][jerry.x] = 'J';
+    terrain[jerry.x][jerry.y] = 'J';
 }
 
 bool Room::possibleStep(Coordinates possition) {
     int X = possition.x;
     int Y = possition.y;
-    return (X >= 0 && Y >= 0 && X < width && Y < length && terrain[Y][X] != '1');
+    return (X >= 0 && Y >= 0 && X < length && Y < width && terrain[X][Y] != '1');
 
 }
 

@@ -1,3 +1,0 @@
-/home/pon/Documents/2.Структури от данни и програмиране/Tom&Jerry/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/pon/Documents/2.Структури от данни и програмиране/Tom&Jerry/cmake-build-debug/CMakeFiles/Tom_Jerry.dir
-/home/pon/Documents/2.Структури от данни и програмиране/Tom&Jerry/cmake-build-debug/CMakeFiles/edit_cache.dir

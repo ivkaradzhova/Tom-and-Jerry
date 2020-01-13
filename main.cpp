@@ -1,19 +1,15 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "Tree.h"
+#include "Commands.h"
 using namespace std;
 int main() {
-    ShortestPathTree t("test2.txt");
-  /*  t.addLeaf(Coordinates(0,0));
-    t.addLeaf(Coordinates(0,1));
-    t.addLeaf(Coordinates(0,2));
-    t.addLeaf(Coordinates(1,0));
-    t.addLeaf(Coordinates(1,1));
+   Room room;
+   room.readRoom("test2.txt");
+   room.print();
 
-*/
-    t.createTree();
-    t.print();
-
+   Commands test2;
+   test2.getShortestPaths("test2.txt");
+   test2.printShortestPaths();
    return 0;
 }
