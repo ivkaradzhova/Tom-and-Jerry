@@ -15,14 +15,22 @@ struct Coordinates {
     int x; //from north to south
     int y; //from west to east
     Coordinates(int _x = 0, int _y = 0): x(_x), y(_y) {}
-    bool operator != (Coordinates &other) {
+    bool operator != (Coordinates &other) const {
         return this->y != other.y || this->x != other.x;
     }
+    bool operator == (Coordinates &other) const {
+        return this->y == other.y && this->x == other.x;
+    }
+
 };
 
 struct Furniture {
     Coordinates startPoint;
     vector<string> shape;
+    Furniture& operator= (Furniture const& other) {
+        this->startPoint = other.startPoint;
+        this->shape = other.shape;
+    }
 };
 
 class Room {
@@ -40,7 +48,7 @@ class Room {
     friend class Commands;
 
 public:
-
+    Room& operator=(Room const& other);
     void readRoom(string fileName);
     void print();
 

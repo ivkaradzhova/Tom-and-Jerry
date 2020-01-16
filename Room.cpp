@@ -6,14 +6,29 @@
 #include <fstream>
 #include <queue>
 
+Room& Room::operator=(Room const& other) {
+    this->length = other.length;
+    this->width = other.width;
+    this->numFurniture = other.numFurniture;
+    this->numPaintSpots = other.numPaintSpots;
+    this->tom = other.tom;
+    this->jerry = other.jerry;
+    this->furniture = other.furniture;
+    this->paintSpots = other.paintSpots;
+    this->terrain.resize(other.terrain.size());
+    for(int i = 0; i < other.terrain.size(); i++) {
+        this->terrain[i] = other.terrain[i];
+    }
+}
+
 void Room::readRoom(string fileName) {
     ifstream file;
     file.open(fileName);
-    file >> this->width >>  this->length >>
-    this->jerry.x >>  this->jerry.y >>
+    file >> this->width >> this->length >>
+    this->jerry.x >> this->jerry.y >>
     this->tom.x >> this->tom.y >>
     this->numFurniture >> this->numPaintSpots;
-
+    cout << this->length << " " << this->width << endl;
     for(int i = 0; i < this->numFurniture; i++) {
         Furniture newFurniture;
         file >> newFurniture.startPoint.x >> newFurniture.startPoint.y;
@@ -33,7 +48,7 @@ void Room::readRoom(string fileName) {
         file >> newCoordinate.x >> newCoordinate.y;
         this->paintSpots.push_back(newCoordinate);
     }
-
+    file.close();
     this->buildTerrain();
 }
 
@@ -48,7 +63,8 @@ void Room::print() {
 
 /**
  * Private function used after reading the input from a file (in readRoom).
- * It arranges all of the objects from the input into one terrain.
+ * It arranges all of the objects from the input into a matrix (vector<vector<char>> terrain)
+ * representing the terrain.
  **/
 void Room::buildTerrain() {
     this->terrain.resize(this->length);
@@ -60,9 +76,9 @@ void Room::buildTerrain() {
     for(int i = 0; i < this->numFurniture; i++) {
         int startX = furniture[i].startPoint.x;
         int startY = furniture[i].startPoint.y;
-        for(int j = startX; j < furniture[i].shape.size() + startX ; j++) {
-            for(int k = startY; k < furniture[i].shape[j - startX].size() + startY ; k++) {
-                terrain[j][k] = furniture[i].shape[j - startX][k - startY];
+        for(int j = 0; j < furniture[i].shape.size() ; j++) {
+            for(int k = 0; k < furniture[i].shape[j].size(); k++) {
+                terrain[j + startX][k + startY] = furniture[i].shape[j][k];
             }
         }
     }

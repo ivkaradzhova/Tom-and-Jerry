@@ -74,18 +74,34 @@ bool ShortestPathTree::createTree() {
 
 
 /**
- * Prints the tree by traversing it pre-order.
+ * Saves all of the leaves of the tree in vector<Node*> leaves.
  **/
-void ShortestPathTree::print(Node* current) {
-    cout << current->data.x << " "<< current->data.y <<endl;
+void ShortestPathTree::getLeaves(Node* current, vector<Node*> &leaves) {
     if(!current->hasChildren()) {
-        cout << "=====" << endl;
-        return;
+        leaves.push_back(current);
     }
     else {
         for(int i = 0; i < current->children.size(); i++) {
-            print(current->children[i]);
+            getLeaves(current->children[i], leaves);
         }
     }
 }
 
+bool ShortestPathTree::addLeaf(Node *current, Coordinates child) {
+    if(root == nullptr) {
+        root = new Node(child);
+        return true;
+    }
+    else {
+        if(canAddLeaf(current, child)) {
+            Node *newChild = new Node(child);
+            newChild->parent = current;
+            current->children.push_back(newChild);
+            return true;
+        }
+        for(int i = 0; i < current->children.size(); i++) {
+            addLeaf(current->children[i], child);
+        }
+    }
+    return false;
+}
